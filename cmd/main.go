@@ -1,11 +1,26 @@
 package main
 
 import (
+	"fmt"
+
 	"oasisdb/internal/config"
 	dblib "oasisdb/internal/db"
 	"oasisdb/internal/server"
 	"oasisdb/pkg/logger"
 )
+
+func printBanner() {
+	fmt.Print(`
+=================================================
+   ___     _     ____  ___  ____   ____   ____  
+  / _ \   / \   / ___||_ _|/ ___| |  _ \ | __ ) 
+ | | | | / _ \  \___ \ | | \___ \ | | | ||  _ \ 
+ | |_| |/ ___ \  ___) || |  ___) || |_| || |_) |
+  \___//_/   \_\|____/|___||____/ |____/ |____/ 
+=================================================
+                      OasisDB
+`)
+}
 
 func main() {
 	// Init Config from file
@@ -17,6 +32,7 @@ func main() {
 
 	// Initialize logger with config settings
 	logger.InitLogger(conf.LogLevel, conf.LogFile)
+	printBanner()
 	logger.Info("OasisDB starting", "log_level", conf.LogLevel, "log_file", conf.LogFile)
 
 	// Init DB
